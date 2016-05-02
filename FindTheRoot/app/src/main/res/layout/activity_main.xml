@@ -26,5 +26,13 @@
             android:layout_gravity="center"
             android:text="Welcome to the best Root Finder!"
             android:textSize="16sp" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Equation Builder"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal|top" />
     </FrameLayout>
 </RelativeLayout>
