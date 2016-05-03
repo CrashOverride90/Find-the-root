@@ -2,6 +2,7 @@
 package edu.uh.findtheroot;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -12,9 +13,12 @@ public class EquationBuilderUI extends Activity {
 
     Button button0 , button1 , button2 , button3 , button4 , button5 , button6 ,
             button7 , button8 , button9 , buttonAdd , buttonSub , buttonX,
-            buttonExp, buttonDot , buttonC , buttonEqual;
+            buttonExp, buttonDot , buttonC , buttonNext;
     TextView eqTextView;
     String equationText = "";
+    private static final String TAG = "EquationBuilderActivity";
+    public static final String PREFS_NAME = "localPrefs";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,17 +40,21 @@ public class EquationBuilderUI extends Activity {
         buttonExp = (Button) findViewById(R.id.buttonExp);
         buttonX = (Button) findViewById(R.id.buttonX);
         buttonC = (Button) findViewById(R.id.buttonC);
-        buttonEqual = (Button) findViewById(R.id.buttoneql);
+        buttonNext = (Button) findViewById(R.id.buttonNext);
         eqTextView = (TextView) findViewById(R.id.eqView);
-
         equationText = "";
-
-
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "1";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>1</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "1";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -69,7 +77,14 @@ public class EquationBuilderUI extends Activity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "3";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>3</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "3";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -77,7 +92,14 @@ public class EquationBuilderUI extends Activity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "4";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>4</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "4";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -85,7 +107,14 @@ public class EquationBuilderUI extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "5";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>5</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "5";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -93,7 +122,14 @@ public class EquationBuilderUI extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "6";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>6</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "6";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -101,7 +137,14 @@ public class EquationBuilderUI extends Activity {
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "7";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>7</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "7";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -109,7 +152,14 @@ public class EquationBuilderUI extends Activity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "8";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>8</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "8";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -117,7 +167,14 @@ public class EquationBuilderUI extends Activity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += "9";
+                if(buttonExp.isSelected() == true) {
+                    equationText += "<sup>9</sup>";
+                    buttonExp.setSelected(false);
+                    updateButtonStatusOnExponent(true);
+                }
+                else {
+                    equationText += "9";
+                }
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -161,7 +218,39 @@ public class EquationBuilderUI extends Activity {
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
+
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equationText = "";
+                eqTextView.setText(Html.fromHtml(equationText));
+            }
+        });
+
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadNextScreen();
+            }
+        });
         
+    }
+
+    private void loadNextScreen() {
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        String algorithm = settings.getString("algorithm", "newton");
+        if(algorithm.equals("newton")) {
+            // load newton screen
+        }
+        else if(algorithm.equals("regulaFalsi")) {
+
+        }
+        else if(algorithm.equals("secant")) {
+
+        }
+        else if(algorithm.equals("bisection")) {
+
+        }
     }
 
     private void updateButtonStatusOnExponent(boolean status) {
@@ -170,7 +259,7 @@ public class EquationBuilderUI extends Activity {
         button0.setEnabled(status);
         buttonDot.setEnabled(status);
         buttonX.setEnabled(status);
-        buttonEqual.setEnabled(status);
+        buttonNext.setEnabled(status);
         buttonExp.setEnabled(status);
         buttonC.setEnabled(status);
     }
