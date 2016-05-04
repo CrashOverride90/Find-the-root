@@ -4,10 +4,18 @@ package edu.uh.findtheroot;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Debug;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.Console;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EquationBuilderUI extends Activity {
 
@@ -15,7 +23,7 @@ public class EquationBuilderUI extends Activity {
             button7 , button8 , button9 , buttonAdd , buttonSub , buttonX,
             buttonExp, buttonDot , buttonC , buttonNext;
     TextView eqTextView;
-    String equationText = "";
+    String equationText;
     private static final String TAG = "EquationBuilderActivity";
     public static final String PREFS_NAME = "localPrefs";
 
@@ -236,7 +244,29 @@ public class EquationBuilderUI extends Activity {
         
     }
 
+    private ArrayList<Double> processText(String regex, String text) {
+        ArrayList<Double> coefficients = new ArrayList<Double>();
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(text);
+        while (matcher.find())
+        {
+            String xterm = matcher.group(1);
+//            Log.d(TAG, "xterm = " + xterm);
+            coefficients.add(Double.parseDouble(xterm));
+        }
+        String last = ""+text.charAt(text.length()-1);
+        coefficients.add(Double.parseDouble(last));
+        return coefficients;
+    }
+
+
     private void loadNextScreen() {
+
+//        ArrayList<Double> coeffs = processText("([0-9]*\\.?[0-9]+)(\\d*[x])", "2.5x<sup>3.5</sup> + 3x<sup>2</sup> + 5x + 3");
+        String regex = "([0-9]*\\.?[0-9]+)(\\d*[x])";
+        ArrayList<Double> coeffs = processText(regex, equationText);
+        Log.d(TAG, coeffs.size()+"");
+
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String algorithm = settings.getString("algorithm", "newton");
         if(algorithm.equals("newton")) {
