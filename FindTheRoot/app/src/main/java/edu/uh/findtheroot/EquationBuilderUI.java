@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -118,7 +119,7 @@ public class EquationBuilderUI extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected()) {
+                if(buttonExp.isSelected() == true) {
                     equationText += "<sup>5</sup>";
                     exponent[exponentIndex]=5;
                     exponentIndex++;
@@ -134,7 +135,7 @@ public class EquationBuilderUI extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected()) {
+                if(buttonExp.isSelected() == true) {
                     equationText += "<sup>6</sup>";
                     exponent[exponentIndex]=6;
                     exponentIndex++;
@@ -166,7 +167,7 @@ public class EquationBuilderUI extends Activity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected()) {
+                if(buttonExp.isSelected() == true) {
                     equationText += "<sup>8</sup>";
                     exponent[exponentIndex]=8;
                     exponentIndex++;
@@ -182,7 +183,7 @@ public class EquationBuilderUI extends Activity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected()) {
+                if(buttonExp.isSelected() == true) {
                     equationText += "<sup>9</sup>";
                     exponent[exponentIndex]=9;
                     exponentIndex++;
@@ -233,7 +234,7 @@ public class EquationBuilderUI extends Activity {
             @Override
             public void onClick(View v) {
                 equationText += "+";
-                if(buttonX.isSelected() && !buttonExp.isSelected()){
+                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
                     exponent[exponentIndex]=1;
                     exponentIndex++;
                 }
@@ -246,7 +247,7 @@ public class EquationBuilderUI extends Activity {
             @Override
             public void onClick(View v) {
                 equationText += "-";
-                if(buttonX.isSelected() && !buttonExp.isSelected()){
+                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
                     exponent[exponentIndex]=1;
                     exponentIndex++;
                 }
@@ -260,6 +261,7 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 equationText = "";
                 enableAllButtons();
+                clearContents();
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -278,6 +280,15 @@ public class EquationBuilderUI extends Activity {
 
     }
 
+    private void clearContents() {
+        exponent = null;
+        exponent = new int[10];
+        exponentIndex = 0;
+        eqTextView.setText("");
+        equationText = "";
+        enableAllButtons();
+    }
+
     private ArrayList<Double> processText(String regex, String text) {
         text += "$"; // adding a delimiter to the end of equation
         ArrayList<Double> coefficients = new ArrayList<Double>();
@@ -289,7 +300,22 @@ public class EquationBuilderUI extends Activity {
             String[] list = group.split("[x$]");
 
             if(list.length == 1) {
-                coefficients.add(Double.parseDouble(list[0]));
+                double coeff = 0;
+                if(list[0].matches(".*\\d+.*")) {
+                    coeff = Double.parseDouble(list[0]);
+                }
+                else {
+                    if(list[0].charAt(0) == '+') {
+                        coeff = 1;
+                    }
+                    else {
+                        coeff = -1;
+                    }
+                }
+                coefficients.add(coeff);
+            }
+            if(list.length == 0) {
+                coefficients.add(1.0);
             }
         }
         return coefficients;
@@ -297,7 +323,7 @@ public class EquationBuilderUI extends Activity {
 
 
     private void loadNextScreen() {
-//        String sample = "2.5x<sup>3.5</sup>-3x<sup>2</sup>+5x+3.3$";
+//        String sample = "2.5x<sup>3.5</sup>-x<sup>2</sup>+5x+3.3$";
         String regex = "([\\+\\-])*([0-9]*\\.?[0-9]+)*([x$])";
         ArrayList<Double> coeffs = processText(regex, equationText);
 
@@ -306,7 +332,7 @@ public class EquationBuilderUI extends Activity {
         ArrayList<Integer> exps = new ArrayList<Integer>();
         for(int i = 0; i < exponent.length; i=i+2) {
             exps.add(exponent[i]);
-            if(exponent[i+1]==0)
+            if(exponent[i]!=1&&exponent[i+1]==0)
                 break;
         }
         Log.d(TAG, "Exponents: " + exps);
@@ -318,6 +344,7 @@ public class EquationBuilderUI extends Activity {
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
+                clearContents();
                 startActivity(intent);
                 break;
             case 1:
@@ -325,6 +352,7 @@ public class EquationBuilderUI extends Activity {
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
+                clearContents();
                 startActivity(intent);
                 break;
             case 2:
@@ -332,13 +360,15 @@ public class EquationBuilderUI extends Activity {
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
+                clearContents();
                 startActivity(intent);
                 break;
             case 3:
-                intent = new Intent(this, Bisection.class);
+                intent = new Intent(this, NewtonRaphsonActivity.class);
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
+                clearContents();
                 startActivity(intent);
                 break;
             default:
@@ -346,6 +376,7 @@ public class EquationBuilderUI extends Activity {
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
+                clearContents();
                 startActivity(intent);
                 break;
         }

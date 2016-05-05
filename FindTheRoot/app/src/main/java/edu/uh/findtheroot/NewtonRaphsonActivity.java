@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class NewtonRaphsonActivity extends Activity {
         final EditText guess = (EditText) findViewById(R.id.editTextGuess);
         final EditText tolerance = (EditText) findViewById(R.id.editTextTolerance);
         final EditText iterations = (EditText) findViewById(R.id.editTextIterations);
-
+        final TextView computedValueTextView = (TextView) findViewById(R.id.textViewComputedValue);
         coefficients = (ArrayList<Double>) getIntent().getSerializableExtra("coefficients");
         exponents = getIntent().getIntegerArrayListExtra("exponents");
         final String eq = getIntent().getStringExtra("equation");
@@ -46,6 +48,7 @@ public class NewtonRaphsonActivity extends Activity {
                 );
 
                 Log.d(TAG, "value: " + computedValue);
+                computedValueTextView.setText(""+computedValue);
             }
         });
     }

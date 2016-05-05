@@ -102,4 +102,15 @@
         android:layout_below="@+id/editTextIterations"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textViewComputedValue"
+        android:layout_marginTop="31dp"
+        android:textSize="30sp"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/buttonSolve"
+        android:layout_alignStart="@+id/textViewIterations" />
+
 </RelativeLayout>
