@@ -2,6 +2,7 @@
 package edu.uh.findtheroot;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
@@ -23,6 +24,7 @@ public class EquationBuilderUI extends Activity {
             button7 , button8 , button9 , buttonAdd , buttonSub , buttonX,
             buttonExp, buttonDot , buttonC , buttonNext;
     TextView eqTextView;
+    Spinner dropdown;
     String equationText = "";
     int[] exponent=new int[8];
     int exponentIndex =0;
@@ -34,7 +36,7 @@ public class EquationBuilderUI extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_equation_builder_ui);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner);
+        dropdown = (Spinner)findViewById(R.id.spinner);
         String[] items = new String[] {"Newton Raphson", "Regla Falsi", "Secant", "Bisection"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
@@ -266,6 +268,7 @@ public class EquationBuilderUI extends Activity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                exponentIndex = 0;
                 loadNextScreen();
             }
         });
@@ -295,29 +298,47 @@ public class EquationBuilderUI extends Activity {
         String regex = "([\\+\\-])*([0-9]*\\.?[0-9]+)*([x$])";
         ArrayList<Double> coeffs = processText(regex, equationText);
 
-        Log.d(TAG, "Coefficients: ");
-        printArrayListOfDoubles(coeffs);
+        Log.d(TAG, "Coefficients: " + coeffs);
 
         ArrayList<Integer> exps = new ArrayList<Integer>();
         for(int i = 0; i < exponent.length; i++) {
-            exps.add(exponent[0]);
+            exps.add(exponent[i]);
         }
-        Log.d(TAG, "Exponents: ");
-        printArrayListOfInts(exps);
+        Log.d(TAG, "Exponents: " + exps);
 
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        String algorithm = settings.getString("algorithm", "newton");
-        if(algorithm.equals("newton")) {
-            // load newton screen
-        }
-        else if(algorithm.equals("regulaFalsi")) {
-
-        }
-        else if(algorithm.equals("secant")) {
-
-        }
-        else if(algorithm.equals("bisection")) {
-
+        Intent intent;
+        switch (dropdown.getSelectedItemPosition()) {
+            case 0:
+                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent.putExtra("coefficients", coeffs);
+                intent.putExtra("equation", equationText);
+                intent.putIntegerArrayListExtra("exponents", exps);
+                startActivity(intent);
+                break;
+            case 1:
+                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent.putExtra("coefficients", coeffs);
+                intent.putIntegerArrayListExtra("exponents", exps);
+                startActivity(intent);
+                break;
+            case 2:
+                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent.putExtra("coefficients", coeffs);
+                intent.putIntegerArrayListExtra("exponents", exps);
+                startActivity(intent);
+                break;
+            case 3:
+                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent.putExtra("coefficients", coeffs);
+                intent.putIntegerArrayListExtra("exponents", exps);
+                startActivity(intent);
+                break;
+            default:
+                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent.putExtra("coefficients", coeffs);
+                intent.putIntegerArrayListExtra("exponents", exps);
+                startActivity(intent);
+                break;
         }
     }
 
