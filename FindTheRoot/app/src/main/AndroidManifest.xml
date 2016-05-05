@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewtonRaphsonActivity" />
-        <activity android:name=".BisectionActivity"></activity>
+        <activity android:name=".BisectionActivity" />
+        <activity android:name=".SecantActivity"></activity>
     </application>
 
 </manifest>
