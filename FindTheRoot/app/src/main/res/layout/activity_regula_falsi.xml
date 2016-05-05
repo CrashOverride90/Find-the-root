@@ -9,4 +9,124 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.uh.findtheroot.RegulaFalsiActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Regula Falsi"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="25sp"
+        android:id="@+id/regulaFalsiTextViewTitle"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="8x + 1"
+        android:gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        android:id="@+id/regulaFalsiTextViewEquation"
+        android:layout_below="@+id/regulaFalsiTextViewTitle"
+        android:layout_alignStart="@+id/regulaFalsiTextViewTitle"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="a Value: "
+        android:id="@+id/regulaFalsiTextViewAValue"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="b Value:"
+        android:id="@+id/regulaFalsitextViewBValue"
+        android:layout_below="@+id/regulaFalsiTextViewAValue"
+        android:layout_alignStart="@+id/regulaFalsiTextViewAValue"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tolerance: "
+        android:id="@+id/regulaFalsiTextViewTolerance"
+        android:layout_below="@+id/regulaFalsitextViewBValue"
+        android:layout_alignStart="@+id/regulaFalsitextViewBValue"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Iterations"
+        android:id="@+id/regulaFalsiTextViewIterations"
+        android:layout_below="@+id/regulaFalsiTextViewTolerance"
+        android:layout_alignStart="@+id/regulaFalsiTextViewTolerance"
+        android:layout_marginTop="38dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextAValueRegulaFalsi"
+        android:layout_alignTop="@+id/regulaFalsiTextViewAValue"
+        android:layout_toEndOf="@+id/regulaFalsiTextViewTolerance"
+        android:layout_marginStart="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextBValueRegulaFalsi"
+        android:layout_alignTop="@+id/regulaFalsitextViewBValue"
+        android:layout_alignStart="@+id/editTextAValueRegulaFalsi" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextToleranceRegulaFalsi"
+        android:layout_alignTop="@+id/regulaFalsiTextViewTolerance"
+        android:layout_alignStart="@+id/editTextBValueRegulaFalsi" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextIterationsRegulaFalsi"
+        android:layout_alignTop="@+id/regulaFalsiTextViewIterations"
+        android:layout_alignStart="@+id/editTextToleranceRegulaFalsi" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solve"
+        android:id="@+id/btnSolveRegulaFalsi"
+        android:layout_below="@+id/editTextIterationsRegulaFalsi"
+        android:layout_toEndOf="@+id/regulaFalsiTextViewIterations"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtViewValueRegulaFalsi"
+        android:layout_below="@+id/btnSolveRegulaFalsi"
+        android:layout_toEndOf="@+id/regulaFalsitextViewBValue"
+        android:layout_marginTop="36dp" />
+
 </RelativeLayout>
