@@ -23,16 +23,37 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/eqView"
+        android:layout_height="30dp"
+        android:text="Root Finder"
+        android:gravity="center_vertical"
+        android:id="@+id/titleTextView"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="25sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eqView"
         android:height="50dp"
         android:gravity="center_vertical"
         android:textSize="25sp"
         android:background="@color/md_grey_100"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_marginTop="20sp"
+        android:layout_below="@+id/eqView"
+        android:layout_toStartOf="@+id/button3"
+        android:spinnerMode="dropdown"
+        android:layout_alignEnd="@+id/button3" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -207,10 +228,13 @@
         android:text="Next"
         android:id="@+id/buttonNext"
         android:layout_below="@+id/button0"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="20dp"
         android:layout_alignRight="@+id/buttonX"
         android:layout_alignEnd="@+id/buttonX"
         android:layout_alignLeft="@+id/buttonDot"
         android:layout_alignStart="@+id/buttonDot" />
+
+
+
 
 </RelativeLayout>
