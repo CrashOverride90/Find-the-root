@@ -17,12 +17,10 @@ public class SecantActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secant);
+        eqTextView = (TextView) findViewById(R.id.textViewEquationSecant);
         coefficients = (ArrayList<Double>) getIntent().getSerializableExtra("coefficients");
         exponents = getIntent().getIntegerArrayListExtra("exponents");
         String eq = getIntent().getStringExtra("equation");
-        if (eq == null) {
-            eq = "";
-        }
         eqTextView.setText(Html.fromHtml(eq));
     }
 }

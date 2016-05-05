@@ -20,9 +20,6 @@ public class RegulaFalsiActivity extends Activity {
         coefficients = (ArrayList<Double>) getIntent().getSerializableExtra("coefficients");
         exponents = getIntent().getIntegerArrayListExtra("exponents");
         String eq = getIntent().getStringExtra("equation");
-        if (eq == null) {
-            eq = "";
-        }
         eqTextView.setText(Html.fromHtml(eq));
     }
 }

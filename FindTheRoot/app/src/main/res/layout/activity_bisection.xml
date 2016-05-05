@@ -28,7 +28,7 @@
         android:gravity="center_vertical"
         android:fontFamily="sans-serif-medium"
         android:textSize="20sp"
-        android:id="@+id/textViewEquation"
+        android:id="@+id/textViewEquationBisection"
         android:layout_below="@+id/bisectionTextViewTitle"
         android:layout_alignStart="@+id/bisectionTextViewTitle"
         android:layout_marginTop="30dp" />
