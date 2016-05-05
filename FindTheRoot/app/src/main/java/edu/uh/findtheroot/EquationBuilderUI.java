@@ -267,6 +267,10 @@ public class EquationBuilderUI extends Activity {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(buttonX.isSelected()==false){
+                    exponentIndex++;
+                    exponent[exponentIndex]=0;
+                }
                 exponentIndex = 0;
                 loadNextScreen();
             }
@@ -301,9 +305,9 @@ public class EquationBuilderUI extends Activity {
 
         ArrayList<Integer> exps = new ArrayList<Integer>();
         for(int i = 0; i < exponent.length; i=i+2) {
-            if(exponent[i]!=0) {
-                exps.add(exponent[i]);
-            }
+            exps.add(exponent[i]);
+            if(exponent[i+1]==0)
+                break;
         }
         Log.d(TAG, "Exponents: " + exps);
 
