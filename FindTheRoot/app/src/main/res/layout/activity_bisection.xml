@@ -37,11 +37,96 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Initial Guess: "
-        android:id="@+id/bisectionTextViewGuess"
+        android:text="a Value: "
+        android:id="@+id/bisectionTextViewAValue"
         android:layout_marginStart="30dp"
         android:layout_marginTop="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="b Value:"
+        android:id="@+id/textViewBValue"
+        android:layout_below="@+id/bisectionTextViewAValue"
+        android:layout_alignStart="@+id/bisectionTextViewAValue"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tolerance: "
+        android:id="@+id/bisectionTextViewTolerance"
+        android:layout_below="@+id/textViewBValue"
+        android:layout_alignStart="@+id/textViewBValue"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Iterations"
+        android:id="@+id/bisectionTextViewIterations"
+        android:layout_below="@+id/bisectionTextViewTolerance"
+        android:layout_alignStart="@+id/bisectionTextViewTolerance"
+        android:layout_marginTop="38dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextAValueBisection"
+        android:layout_alignTop="@+id/bisectionTextViewAValue"
+        android:layout_toEndOf="@+id/bisectionTextViewTolerance"
+        android:layout_marginStart="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextBValueBisection"
+        android:layout_alignTop="@+id/textViewBValue"
+        android:layout_alignStart="@+id/editTextAValueBisection" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextToleranceBisection"
+        android:layout_alignTop="@+id/bisectionTextViewTolerance"
+        android:layout_alignStart="@+id/editTextBValueBisection" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextIterationsBisection"
+        android:layout_alignTop="@+id/bisectionTextViewIterations"
+        android:layout_alignStart="@+id/editTextToleranceBisection" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solve"
+        android:id="@+id/btnSolveBisection"
+        android:layout_below="@+id/editTextIterationsBisection"
+        android:layout_toEndOf="@+id/bisectionTextViewIterations"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtViewValueBisection"
+        android:layout_below="@+id/btnSolveBisection"
+        android:layout_toEndOf="@+id/textViewBValue"
+        android:layout_marginTop="36dp" />
 
 </RelativeLayout>
