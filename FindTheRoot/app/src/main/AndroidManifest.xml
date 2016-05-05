@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".NewtonRaphsonActivity" />
         <activity android:name=".BisectionActivity" />
-        <activity android:name=".SecantActivity"></activity>
+        <activity android:name=".SecantActivity" />
+        <activity android:name=".RegulaFalsiActivity"></activity>
     </application>
 
 </manifest>
