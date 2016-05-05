@@ -3,7 +3,6 @@ package edu.uh.findtheroot;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -343,18 +342,6 @@ public class EquationBuilderUI extends Activity {
                 intent.putIntegerArrayListExtra("exponents", exps);
                 startActivity(intent);
                 break;
-        }
-    }
-
-    private void printArrayListOfDoubles(ArrayList<Double> list) {
-        for (double item : list) {
-            Log.d(TAG, item + ", ");
-        }
-    }
-
-    private void printArrayListOfInts(ArrayList<Integer> list) {
-        for (int item : list) {
-            Log.d(TAG, item + ", ");
         }
     }
 
