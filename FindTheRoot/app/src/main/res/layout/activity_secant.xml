@@ -9,4 +9,124 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.uh.findtheroot.SecantActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Secant"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="25sp"
+        android:id="@+id/textViewTitleRF"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="8x + 1"
+        android:gravity="center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20sp"
+        android:id="@+id/textViewEquationRF"
+        android:layout_below="@+id/textViewTitleRF"
+        android:layout_alignStart="@+id/textViewTitleRF"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="a Value: "
+        android:id="@+id/textViewAValueRF"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="b Value:"
+        android:id="@+id/textViewBValueRF"
+        android:layout_below="@+id/textViewAValueRF"
+        android:layout_alignStart="@+id/textViewAValueRF"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tolerance: "
+        android:id="@+id/textViewToleranceRF"
+        android:layout_below="@+id/textViewBValueRF"
+        android:layout_alignStart="@+id/textViewBValueRF"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Iterations"
+        android:id="@+id/textViewIterationsRF"
+        android:layout_below="@+id/textViewToleranceRF"
+        android:layout_alignStart="@+id/textViewToleranceRF"
+        android:layout_marginTop="38dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextAValueRF"
+        android:layout_alignTop="@+id/textViewAValueRF"
+        android:layout_toEndOf="@+id/textViewToleranceRF"
+        android:layout_marginStart="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextBValueRF"
+        android:layout_alignTop="@+id/textViewBValueRF"
+        android:layout_alignStart="@+id/editTextAValueRF" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editTextToleranceRF"
+        android:layout_alignTop="@+id/textViewToleranceRF"
+        android:layout_alignStart="@+id/editTextBValueRF" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextIterationsRF"
+        android:layout_alignTop="@+id/textViewIterationsRF"
+        android:layout_alignStart="@+id/editTextToleranceRF" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Solve"
+        android:id="@+id/btnSolveRF"
+        android:layout_below="@+id/editTextIterationsRF"
+        android:layout_toEndOf="@+id/textViewIterationsRF"
+        android:layout_marginTop="29dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/txtViewValueRF"
+        android:layout_below="@+id/btnSolveRF"
+        android:layout_toEndOf="@+id/textViewBValueRF"
+        android:layout_marginTop="36dp" />
+
 </RelativeLayout>

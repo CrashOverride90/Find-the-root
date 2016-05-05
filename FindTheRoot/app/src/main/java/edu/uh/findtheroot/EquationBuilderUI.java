@@ -348,7 +348,7 @@ public class EquationBuilderUI extends Activity {
                 startActivity(intent);
                 break;
             case 1:
-                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent = new Intent(this, RegulaFalsiActivity.class);
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
@@ -356,7 +356,7 @@ public class EquationBuilderUI extends Activity {
                 startActivity(intent);
                 break;
             case 2:
-                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent = new Intent(this, SecantActivity.class);
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
@@ -364,7 +364,7 @@ public class EquationBuilderUI extends Activity {
                 startActivity(intent);
                 break;
             case 3:
-                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent = new Intent(this, BisectionActivity.class);
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
