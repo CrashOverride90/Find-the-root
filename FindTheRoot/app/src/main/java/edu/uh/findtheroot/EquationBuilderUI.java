@@ -25,7 +25,7 @@ public class EquationBuilderUI extends Activity {
     TextView eqTextView;
     Spinner dropdown;
     String equationText = "";
-    int[] exponent=new int[8];
+    int[] exponent=new int[10];
     int exponentIndex =0;
     private static final String TAG = "EquationBuilderActivity";
     public static final String PREFS_NAME = "localPrefs";
@@ -271,7 +271,7 @@ public class EquationBuilderUI extends Activity {
                 loadNextScreen();
             }
         });
-        
+
     }
 
     private ArrayList<Double> processText(String regex, String text) {
@@ -300,8 +300,10 @@ public class EquationBuilderUI extends Activity {
         Log.d(TAG, "Coefficients: " + coeffs);
 
         ArrayList<Integer> exps = new ArrayList<Integer>();
-        for(int i = 0; i < exponent.length; i++) {
-            exps.add(exponent[i]);
+        for(int i = 0; i < exponent.length; i=i+2) {
+            if(exponent[i]!=0) {
+                exps.add(exponent[i]);
+            }
         }
         Log.d(TAG, "Exponents: " + exps);
 
