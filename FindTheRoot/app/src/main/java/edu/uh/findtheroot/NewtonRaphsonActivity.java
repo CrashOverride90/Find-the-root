@@ -31,7 +31,10 @@ public class NewtonRaphsonActivity extends Activity {
         final TextView computedValueTextView = (TextView) findViewById(R.id.textViewComputedValue);
         coefficients = (ArrayList<Double>) getIntent().getSerializableExtra("coefficients");
         exponents = getIntent().getIntegerArrayListExtra("exponents");
-        final String eq = getIntent().getStringExtra("equation");
+        String eq = getIntent().getStringExtra("equation");
+        if (eq == null) {
+            eq = "";
+        }
         eqTextView.setText(Html.fromHtml(eq));
 
         Button btnSolve = (Button) findViewById(R.id.buttonSolve);
