@@ -38,7 +38,7 @@ public class EquationBuilderUI extends Activity {
 
         dropdown = (Spinner)findViewById(R.id.spinner);
         String[] items = new String[] {"Newton Raphson", "Regla Falsi", "Secant", "Bisection"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
         button0 = (Button) findViewById(R.id.button0);
@@ -318,24 +318,28 @@ public class EquationBuilderUI extends Activity {
             case 1:
                 intent = new Intent(this, NewtonRaphsonActivity.class);
                 intent.putExtra("coefficients", coeffs);
+                intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
                 startActivity(intent);
                 break;
             case 2:
                 intent = new Intent(this, NewtonRaphsonActivity.class);
                 intent.putExtra("coefficients", coeffs);
+                intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
                 startActivity(intent);
                 break;
             case 3:
                 intent = new Intent(this, NewtonRaphsonActivity.class);
                 intent.putExtra("coefficients", coeffs);
+                intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
                 startActivity(intent);
                 break;
             default:
                 intent = new Intent(this, NewtonRaphsonActivity.class);
                 intent.putExtra("coefficients", coeffs);
+                intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
                 startActivity(intent);
                 break;
