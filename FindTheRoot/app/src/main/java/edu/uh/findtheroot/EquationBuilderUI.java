@@ -4,16 +4,16 @@ package edu.uh.findtheroot;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Debug;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Console;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +23,9 @@ public class EquationBuilderUI extends Activity {
             button7 , button8 , button9 , buttonAdd , buttonSub , buttonX,
             buttonExp, buttonDot , buttonC , buttonNext;
     TextView eqTextView;
-    String equationText;
+    String equationText = "";
+    int[] exponent=new int[8];
+    int exponentIndex =0;
     private static final String TAG = "EquationBuilderActivity";
     public static final String PREFS_NAME = "localPrefs";
 
@@ -50,19 +52,11 @@ public class EquationBuilderUI extends Activity {
         buttonC = (Button) findViewById(R.id.buttonC);
         buttonNext = (Button) findViewById(R.id.buttonNext);
         eqTextView = (TextView) findViewById(R.id.eqView);
-        equationText = "";
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
-                    equationText += "<sup>1</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
-                }
-                else {
-                    equationText += "1";
-                }
+                equationText += "1";
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -72,8 +66,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>2</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=2;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "2";
@@ -87,8 +82,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>3</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=3;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "3";
@@ -102,8 +98,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>4</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=4;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "4";
@@ -117,8 +114,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>5</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=5;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "5";
@@ -132,8 +130,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>6</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=6;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "6";
@@ -147,8 +146,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>7</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=7;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "7";
@@ -162,8 +162,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>8</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=8;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "8";
@@ -177,8 +178,9 @@ public class EquationBuilderUI extends Activity {
             public void onClick(View v) {
                 if(buttonExp.isSelected() == true) {
                     equationText += "<sup>9</sup>";
-                    buttonExp.setSelected(false);
-                    updateButtonStatusOnExponent(true);
+                    exponent[exponentIndex]=9;
+                    exponentIndex++;
+                    updateButtonStatusAfterExponent();
                 }
                 else {
                     equationText += "9";
@@ -195,11 +197,21 @@ public class EquationBuilderUI extends Activity {
             }
         });
 
+        buttonDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                equationText += ".";
+                eqTextView.setText(Html.fromHtml(equationText));
+            }
+        });
+
         buttonX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 equationText += "x";
                 eqTextView.setText(Html.fromHtml(equationText));
+                buttonX.setSelected(true);
+                updateButtonStatusOnX(false);
             }
         });
 
@@ -214,7 +226,12 @@ public class EquationBuilderUI extends Activity {
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += " + ";
+                equationText += "+";
+                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
+                    exponent[exponentIndex]=1;
+                    exponentIndex++;
+                }
+                updateButtonStatusOnAddSub(false);
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -222,7 +239,12 @@ public class EquationBuilderUI extends Activity {
         buttonSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                equationText += " - ";
+                equationText += "-";
+                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
+                    exponent[exponentIndex]=1;
+                    exponentIndex++;
+                }
+                updateButtonStatusOnAddSub(false);
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -231,6 +253,7 @@ public class EquationBuilderUI extends Activity {
             @Override
             public void onClick(View v) {
                 equationText = "";
+                enableAllButtons();
                 eqTextView.setText(Html.fromHtml(equationText));
             }
         });
@@ -245,27 +268,37 @@ public class EquationBuilderUI extends Activity {
     }
 
     private ArrayList<Double> processText(String regex, String text) {
+        text += "$"; // adding a delimiter to the end of equation
         ArrayList<Double> coefficients = new ArrayList<Double>();
         final Pattern pattern = Pattern.compile(regex);
         final Matcher matcher = pattern.matcher(text);
         while (matcher.find())
         {
-            String xterm = matcher.group(1);
-//            Log.d(TAG, "xterm = " + xterm);
-            coefficients.add(Double.parseDouble(xterm));
+            String group = matcher.group();
+            String[] list = group.split("[x$]");
+
+            if(list.length == 1) {
+                coefficients.add(Double.parseDouble(list[0]));
+            }
         }
-        String last = ""+text.charAt(text.length()-1);
-        coefficients.add(Double.parseDouble(last));
         return coefficients;
     }
 
 
     private void loadNextScreen() {
-
-//        ArrayList<Double> coeffs = processText("([0-9]*\\.?[0-9]+)(\\d*[x])", "2.5x<sup>3.5</sup> + 3x<sup>2</sup> + 5x + 3");
-        String regex = "([0-9]*\\.?[0-9]+)(\\d*[x])";
+//        String sample = "2.5x<sup>3.5</sup>-3x<sup>2</sup>+5x+3.3$";
+        String regex = "([\\+\\-])*([0-9]*\\.?[0-9]+)*([x$])";
         ArrayList<Double> coeffs = processText(regex, equationText);
-        Log.d(TAG, coeffs.size()+"");
+
+        Log.d(TAG, "Coefficients: ");
+        printArrayListOfDoubles(coeffs);
+
+        ArrayList<Integer> exps = new ArrayList<Integer>();
+        for(int i = 0; i < exponent.length; i++) {
+            exps.add(exponent[0]);
+        }
+        Log.d(TAG, "Exponents: ");
+        printArrayListOfInts(exps);
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
         String algorithm = settings.getString("algorithm", "newton");
@@ -283,6 +316,18 @@ public class EquationBuilderUI extends Activity {
         }
     }
 
+    private void printArrayListOfDoubles(ArrayList<Double> list) {
+        for (double item : list) {
+            Log.d(TAG, item + ", ");
+        }
+    }
+
+    private void printArrayListOfInts(ArrayList<Integer> list) {
+        for (int item : list) {
+            Log.d(TAG, item + ", ");
+        }
+    }
+
     private void updateButtonStatusOnExponent(boolean status) {
         buttonAdd.setEnabled(status);
         buttonSub.setEnabled(status);
@@ -291,6 +336,67 @@ public class EquationBuilderUI extends Activity {
         buttonX.setEnabled(status);
         buttonNext.setEnabled(status);
         buttonExp.setEnabled(status);
-        buttonC.setEnabled(status);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+        button5.setEnabled(true);
+        button6.setEnabled(true);
+        button7.setEnabled(true);
+        button8.setEnabled(true);
+        button9.setEnabled(true);
+    }
+
+    private void updateButtonStatusOnX(boolean status) {
+        buttonAdd.setEnabled(true);
+        buttonSub.setEnabled(true);
+        button0.setEnabled(status);
+        button1.setEnabled(status);
+        button2.setEnabled(status);
+        button3.setEnabled(status);
+        button4.setEnabled(status);
+        button5.setEnabled(status);
+        button6.setEnabled(status);
+        button7.setEnabled(status);
+        button8.setEnabled(status);
+        button9.setEnabled(status);
+        buttonDot.setEnabled(status);
+        buttonX.setEnabled(status);
+        buttonExp.setEnabled(true);
+    }
+
+    private void updateButtonStatusOnAddSub(boolean status) {
+        buttonAdd.setEnabled(status);
+        buttonSub.setEnabled(status);
+        button0.setEnabled(true);
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+        button5.setEnabled(true);
+        button6.setEnabled(true);
+        button7.setEnabled(true);
+        button8.setEnabled(true);
+        button9.setEnabled(true);
+        buttonDot.setEnabled(true);
+        buttonX.setEnabled(true);
+        buttonExp.setEnabled(true);
+    }
+
+    private void updateButtonStatusAfterExponent(){
+        buttonExp.setSelected(false);
+        updateButtonStatusOnExponent(true);
+        buttonNext.setEnabled(true);
+    }
+
+    private void enableAllButtons() {
+        ViewGroup parentView = (ViewGroup) findViewById(R.id.rootRelative);
+        for(int i=0; i < parentView.getChildCount(); i++) {
+            View childView = parentView.getChildAt(i);
+            int resID = childView.getId();
+            if (childView instanceof Button) {
+                final Button button = (Button) findViewById(resID);
+                button.setEnabled(true);
+            }
+        }
     }
 }
