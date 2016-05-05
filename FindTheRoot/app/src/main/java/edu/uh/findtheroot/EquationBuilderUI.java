@@ -70,7 +70,7 @@ public class EquationBuilderUI extends Activity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>2</sup>";
                     exponent[exponentIndex]=2;
                     exponentIndex++;
@@ -86,7 +86,7 @@ public class EquationBuilderUI extends Activity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>3</sup>";
                     exponent[exponentIndex]=3;
                     exponentIndex++;
@@ -102,7 +102,7 @@ public class EquationBuilderUI extends Activity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>4</sup>";
                     exponent[exponentIndex]=4;
                     exponentIndex++;
@@ -118,7 +118,7 @@ public class EquationBuilderUI extends Activity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>5</sup>";
                     exponent[exponentIndex]=5;
                     exponentIndex++;
@@ -134,7 +134,7 @@ public class EquationBuilderUI extends Activity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>6</sup>";
                     exponent[exponentIndex]=6;
                     exponentIndex++;
@@ -166,7 +166,7 @@ public class EquationBuilderUI extends Activity {
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>8</sup>";
                     exponent[exponentIndex]=8;
                     exponentIndex++;
@@ -182,7 +182,7 @@ public class EquationBuilderUI extends Activity {
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buttonExp.isSelected() == true) {
+                if(buttonExp.isSelected()) {
                     equationText += "<sup>9</sup>";
                     exponent[exponentIndex]=9;
                     exponentIndex++;
@@ -233,7 +233,7 @@ public class EquationBuilderUI extends Activity {
             @Override
             public void onClick(View v) {
                 equationText += "+";
-                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
+                if(buttonX.isSelected() && !buttonExp.isSelected()){
                     exponent[exponentIndex]=1;
                     exponentIndex++;
                 }
@@ -246,7 +246,7 @@ public class EquationBuilderUI extends Activity {
             @Override
             public void onClick(View v) {
                 equationText += "-";
-                if(buttonX.isSelected()==true && buttonExp.isSelected()==false){
+                if(buttonX.isSelected() && !buttonExp.isSelected()){
                     exponent[exponentIndex]=1;
                     exponentIndex++;
                 }
@@ -331,7 +331,7 @@ public class EquationBuilderUI extends Activity {
                 startActivity(intent);
                 break;
             case 3:
-                intent = new Intent(this, NewtonRaphsonActivity.class);
+                intent = new Intent(this, Bisection.class);
                 intent.putExtra("coefficients", coeffs);
                 intent.putExtra("equation", equationText);
                 intent.putIntegerArrayListExtra("exponents", exps);
