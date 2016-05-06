@@ -21,9 +21,9 @@ public class SecantActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secant);
-        eqTextView = (TextView) findViewById(R.id.editTextAValueSecant);
-        final EditText aValue = (EditText) findViewById(R.id.editTextBValueSecant);
-        final EditText bValue = (EditText) findViewById(R.id.editTextIterationsSecant);
+        eqTextView = (TextView) findViewById(R.id.textViewEquationSecant);
+        final EditText aValue = (EditText) findViewById(R.id.editTextAValueSecant);
+        final EditText bValue = (EditText) findViewById(R.id.editTextBValueSecant);
         final EditText iterations = (EditText) findViewById(R.id.editTextIterationsSecant);
         final EditText tolerance = (EditText) findViewById(R.id.editTextToleranceSecant);
         final TextView computedValueTextView = (TextView) findViewById(R.id.txtViewValueSecant);
