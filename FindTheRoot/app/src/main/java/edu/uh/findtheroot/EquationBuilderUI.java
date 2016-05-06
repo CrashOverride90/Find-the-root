@@ -325,6 +325,7 @@ public class EquationBuilderUI extends Activity {
     private void loadNextScreen() {
 //        String sample = "2.5x<sup>3.5</sup>-x<sup>2</sup>+5x+3.3$";
         String regex = "([\\+\\-])*([0-9]*\\.?[0-9]+)*([x$])";
+//        equationText = "x<sup>3</sup>-6x<sup>2</sup>+12x-8";
         ArrayList<Double> coeffs = processText(regex, equationText);
 
         Log.d(TAG, "Coefficients: " + coeffs);

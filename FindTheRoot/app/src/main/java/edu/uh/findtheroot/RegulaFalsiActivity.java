@@ -21,7 +21,7 @@ public class RegulaFalsiActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regula_falsi);
-        eqTextView = (TextView) findViewById(R.id.textViewEquationBisection);
+        eqTextView = (TextView) findViewById(R.id.regulaFalsiTextViewEquation);
         final EditText aValue = (EditText) findViewById(R.id.editTextAValueRegulaFalsi);
         final EditText bValue = (EditText) findViewById(R.id.editTextBValueRegulaFalsi);
         final EditText iterations = (EditText) findViewById(R.id.editTextIterationsRegulaFalsi);
