@@ -3,6 +3,10 @@ package edu.uh.findtheroot;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,10 +21,35 @@ public class SecantActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secant);
-        eqTextView = (TextView) findViewById(R.id.textViewEquationSecant);
+        eqTextView = (TextView) findViewById(R.id.editTextAValueSecant);
+        final EditText aValue = (EditText) findViewById(R.id.editTextBValueSecant);
+        final EditText bValue = (EditText) findViewById(R.id.editTextIterationsSecant);
+        final EditText iterations = (EditText) findViewById(R.id.editTextIterationsSecant);
+        final EditText tolerance = (EditText) findViewById(R.id.editTextToleranceSecant);
+        final TextView computedValueTextView = (TextView) findViewById(R.id.txtViewValueSecant);
+
         coefficients = (ArrayList<Double>) getIntent().getSerializableExtra("coefficients");
         exponents = getIntent().getIntegerArrayListExtra("exponents");
         String eq = getIntent().getStringExtra("equation");
         eqTextView.setText(Html.fromHtml(eq));
+
+        Button btnSolve = (Button) findViewById(R.id.btnSolveSecant);
+        btnSolve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // compute the answer
+                EquationBuilder equationBuilder = new EquationBuilder(coefficients, exponents);
+                RegulaFalsi equation = new RegulaFalsi(equationBuilder);
+                double computedValue = equation.compute(
+                        Helper.getDoubleFromString(aValue.getText().toString()),
+                        Helper.getDoubleFromString(bValue.getText().toString()),
+                        Helper.getDoubleFromString(tolerance.getText().toString()),
+                        Helper.getDoubleFromString(iterations.getText().toString())
+                );
+
+                Log.d(TAG, "value: " + computedValue);
+                computedValueTextView.setText(""+computedValue);
+            }
+        });
     }
 }
