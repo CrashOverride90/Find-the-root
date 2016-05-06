@@ -39,7 +39,7 @@ public class SecantActivity extends Activity {
             public void onClick(View v) {
                 // compute the answer
                 EquationBuilder equationBuilder = new EquationBuilder(coefficients, exponents);
-                RegulaFalsi equation = new RegulaFalsi(equationBuilder);
+                Secant equation = new Secant(equationBuilder);
                 double computedValue = equation.compute(
                         Helper.getDoubleFromString(aValue.getText().toString()),
                         Helper.getDoubleFromString(bValue.getText().toString()),
