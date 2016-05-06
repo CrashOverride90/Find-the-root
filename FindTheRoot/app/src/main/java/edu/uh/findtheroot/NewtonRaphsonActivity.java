@@ -42,9 +42,9 @@ public class NewtonRaphsonActivity extends Activity {
                 EquationBuilder equationBuilder = new EquationBuilder(coefficients, exponents);
                 NewtonRaphson newtonRaphson = new NewtonRaphson(equationBuilder);
                 double computedValue = newtonRaphson.compute(
-                        getDoubleFromString(guess.getText().toString()),
-                        getDoubleFromString(tolerance.getText().toString()),
-                        getDoubleFromString(iterations.getText().toString())
+                        Helper.getDoubleFromString(guess.getText().toString()),
+                        Helper.getDoubleFromString(tolerance.getText().toString()),
+                        Helper.getDoubleFromString(iterations.getText().toString())
                 );
 
                 Log.d(TAG, "value: " + computedValue);
@@ -53,19 +53,5 @@ public class NewtonRaphsonActivity extends Activity {
         });
     }
 
-    private double getDoubleFromString(String number) {
-        if(number.length() <= 0) {
-            return 0;
-        }
-        else {
-            try {
-                double num = Double.parseDouble(number);
-                return num;
-            } catch (Exception ex) {
-                Log.e(TAG, ex.getMessage());
-                return 0;
-            }
 
-        }
-    }
 }
