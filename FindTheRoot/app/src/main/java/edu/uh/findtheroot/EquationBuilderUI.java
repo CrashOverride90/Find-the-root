@@ -37,7 +37,7 @@ public class EquationBuilderUI extends Activity {
         setContentView(R.layout.activity_equation_builder_ui);
 
         dropdown = (Spinner)findViewById(R.id.spinner);
-        String[] items = new String[] {"Newton Raphson", "Regla Falsi", "Secant", "Bisection"};
+        String[] items = new String[] {"Newton Raphson", "Regula Falsi", "Secant", "Bisection"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
